@@ -1,0 +1,23 @@
+{
+  "name": "react-redux-component-loader",
+  "version": "1.0.1",
+  "description": "as title",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renaesop/react-component-loader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renaesop/react-component-loader/issues"
+  },
+  "homepage": "https://github.com/renaesop/react-component-loader#readme",
+  "dependencies": {
+    "glob": "^7.0.5",
+    "object-assign": "^4.1.0"
+  }
+}

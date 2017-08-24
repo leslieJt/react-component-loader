@@ -18,6 +18,10 @@
   "homepage": "https://github.com/renaesop/react-component-loader#readme",
   "dependencies": {
     "glob": "^7.0.5",
+    "loader-utils": "^1.1.0",
     "object-assign": "^4.1.0"
+  },
+  "peerDependencies": {
+    "react-loadable": "^4"
   }
 }

@@ -8,8 +8,14 @@
 <div id="container">
 
 </div>
-<script src="dist/manifest.bundle.js"></script>
-<script src="dist/vendors.bundle.js"></script>
-<script src="dist/app.bundle.js"></script>
+<script>
+    ['manifest', 'vendors', 'app'].forEach(function (item) {
+      var script = document.createElement('script');
+      var t = Date.now();
+      script.async = false;
+      script.src = "dist/" + item + ".bundle.js?t=" + t;
+      document.body.appendChild(script);
+    });
+</script>
 </body>
 </html>

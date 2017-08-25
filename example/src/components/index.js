@@ -1,27 +1,37 @@
 /**
  * Created by fed on 2017/8/24.
  */
-import { fork, call } from 'redux-saga/effects';
+import assign from 'object-assign';
+import { fork, call, take } from 'redux-saga/effects';
+import { routerReducer } from 'react-router-redux';
 
-export default __ROOT_REDUCER__;
+const UPDATE_SAGA = '@@INNER/UPDATE_SAGA';
 
-const emptySaga = function* emptySaga() {
-  yield new Promise(() => {});
-};
+export default assign({
+  routing: routerReducer,
+}, __ROOT_REDUCER__);
 
-export function *rootSaga() {
-  const sagas = __ROOT_SAGA__.map((saga = emptySaga) => fork(function* wrapperFunc() {
-    let error;
-    for (let i = 0; i < 100; i++) {
-      try {
-        yield call(saga);
-      } catch (e) {
-        error = e;
-      }
+const runningSaga = [];
+
+function* waitingAwakeSaga(saga) {
+  while (!saga) {
+    const action = yield take(UPDATE_SAGA);
+    if (runningSaga.indexOf(action.saga) === -1) {
+      runningSaga.push(action.saga);
+      saga = action.saga;
+      break;
     }
-    if (process.env.NODE_ENV !== 'production') {
+  }
+  for (let i = 0; i < 100; i++) {
+    try {
+      yield call(saga);
+    } catch (e) {
       console.error(e);
     }
-  }));
+  }
+}
+
+export function *rootSaga() {
+  const sagas = __ROOT_SAGA__.map((saga) => fork(waitingAwakeSaga));
   yield sagas;
 }

@@ -11,6 +11,20 @@ var UPDATE_SAGA = '@@INNER/UPDATE_SAGA';
 
 module.exports = function (request) {
   var query = loaderUtils.getOptions(this) || {};
+  if (query.bundle) {
+    var result = [];
+    result.push('import v from "./view.jsx";');
+    result.push('import r from "./reducers";');
+    result.push('import s from "./saga";');
+    result.push('export const view = v;');
+    result.push('export const reducer = r;');
+    result.push('export const saga = s;');
+    this.addDependency(this.context + '/view.jsx');
+    this.addDependency(this.context + '/reducer.js');
+    this.addDependency(this.context + '/saga.js');
+    this.cacheable();
+    return result.join('\n');
+  }
   var config = assign({
     externals: [],
     dir: path.join(process.cwd(), 'src', 'components'),
@@ -19,6 +33,7 @@ module.exports = function (request) {
     saga: '__ROOT_SAGA__',
     component: '__ROOT_ROUTE__',
     UPDATE_SAGA: UPDATE_SAGA,
+    store: 'store'
   }, query);
   var items = ['reducers', 'saga', 'component'].filter(function (value) {
     return request.indexOf(config[value]) > -1;

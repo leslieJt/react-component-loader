@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js',
-    chunkFilename: '[name].chunk.js',
+    chunkFilename: '[name].[chunkhash].chunk.js',
     publicPath: 'dist/',
   },
   module: {
@@ -25,7 +25,17 @@ module.exports = {
           options: {
             externals: ['nav', 'login'],
             lazy: true,
-            loading: 'Loading',
+            loading: 'Loading'
+          }
+        }],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\/me\.json$/,
+        use: ['babel-loader', {
+          loader: path.join(__dirname, '..'),
+          options: {
+            bundle: true,
           }
         }],
         exclude: /node_modules/,
@@ -33,6 +43,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin(['vendors']),
+    new webpack.optimize.CommonsChunkPlugin(['vendors', 'manifest']),
   ],
 };

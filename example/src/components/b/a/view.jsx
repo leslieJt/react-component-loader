@@ -4,4 +4,4 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default () => <div>我是b.a.ab.bda 啊!</div>;
+export default () => <div>我是b.a.ab.bd!</div>;

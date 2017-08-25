@@ -14,7 +14,7 @@ module.exports = function (request) {
   if (query.bundle) {
     var result = [];
     result.push('import v from "./view.jsx";');
-    result.push('import r from "./reducers";');
+    result.push('import r from "./reducer";');
     result.push('import s from "./saga";');
     result.push('export const view = v;');
     result.push('export const reducer = r;');
@@ -33,7 +33,8 @@ module.exports = function (request) {
     saga: '__ROOT_SAGA__',
     component: '__ROOT_ROUTE__',
     UPDATE_SAGA: UPDATE_SAGA,
-    store: 'store'
+    store: 'store',
+    reducerInject: 'reducers',
   }, query);
   var items = ['reducers', 'saga', 'component'].filter(function (value) {
     return request.indexOf(config[value]) > -1;

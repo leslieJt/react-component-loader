@@ -13,8 +13,6 @@ module.exports = function (request) {
   var query = loaderUtils.getOptions(this) || {};
   if (query.bundle) {
     var result = [];
-    var params = loaderUtils.parseQuery(this.resourceQuery);
-    result.push('\n/*------- lazy load module position: ' + params.name + ' -----------*/\n');
     result.push('import v from "./view.jsx";');
     result.push('import r from "./reducer";');
     result.push('import s from "./saga";');

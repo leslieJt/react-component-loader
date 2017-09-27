@@ -16,6 +16,7 @@ module.exports = {
     chunkFilename: '[name].[chunkhash].chunk.js',
     publicPath: 'dist/',
   },
+  watch: true,
   devtool: 'inline-sourcemap',
   module: {
     rules: [

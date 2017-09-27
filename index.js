@@ -13,6 +13,7 @@ module.exports = function (request) {
   var query = loaderUtils.getOptions(this) || {};
   var reducerName = query.reducerName || 'reducer';
   var componentDir = query.componentDir || 'components';
+  var ctx = this;
   if (query.bundle) {
     var result = [];
     result.push('import v from "./view.jsx";');
@@ -37,6 +38,7 @@ module.exports = function (request) {
     UPDATE_SAGA: UPDATE_SAGA,
     store: 'store',
     reducerInject: 'reducers',
+    reducerName: reducerName
   }, query);
   var items = ['reducers', 'saga', 'component'].filter(function (value) {
     return request.indexOf(config[value]) > -1;
@@ -46,7 +48,7 @@ module.exports = function (request) {
     cacheable = false;
     var components = componentList(config);
     items.forEach(function (value) {
-      var result = generators[value](components, config);
+      var result = generators[value](components, config, ctx);
       request = result[1] + request;
       request = request.replace(config[value], result[0]);
     });

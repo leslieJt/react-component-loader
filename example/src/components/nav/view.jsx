@@ -4,7 +4,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default ({children}) => {
+export default ({ children }) => {
   return <div>
     zz导航
     <div>

@@ -24,7 +24,7 @@ sagaMiddleware.run(rootSaga);
 
 render(
   <Provider store={store}>
-    <RootView history={hashHistory} store={store}/>
+    <RootView history={hashHistory} store={store} />
   </Provider>,
   document.getElementById('container')
 );

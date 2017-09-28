@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { ConnectedRouter } from 'react-router-redux';
-import {  Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Nav from './nav/view.jsx';
 import Login from './login/view.jsx';
@@ -14,11 +14,10 @@ import reducers from './index';
 let store;
 
 
-
 const NavWrapper = ({ match }) => {
   return (<Nav>
     <Switch>
-    __ROOT_ROUTE__
+      __ROOT_ROUTE__
     </Switch>
   </Nav>);
 }

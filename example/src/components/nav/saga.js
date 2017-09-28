@@ -3,6 +3,6 @@
  */
 import { take } from 'redux-saga/effects';
 
-export default function* () {
+export default function*() {
   yield take('zzz');
 }

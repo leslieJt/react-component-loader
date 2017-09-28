@@ -52,7 +52,6 @@ module.exports = function (request) {
       request = result[1] + request;
       request = request.replace(config[value], result[0]);
     });
-    console.log(request);
   }
   if (cacheable) {
     this.cacheable();

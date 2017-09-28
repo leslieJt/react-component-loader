@@ -2,7 +2,8 @@
  * Created by fed on 2017/8/24.
  */
 import React from 'react';
-import { Route, Router } from 'react-router';
+import { ConnectedRouter } from 'react-router-redux';
+import {  Route, Switch } from 'react-router-dom';
 
 import Nav from './nav/view.jsx';
 import Login from './login/view.jsx';
@@ -13,15 +14,24 @@ import reducers from './index';
 let store;
 
 
-const Routes = ({ history, store }) => {
-  store = store;
+
+const NavWrapper = ({ match }) => {
+  return (<Nav>
+    <Switch>
+    __ROOT_ROUTE__
+    </Switch>
+  </Nav>);
+}
+
+const Routes = ({ history, store: innerStore }) => {
+  store = innerStore;
   return (
-    <Router history={ history }>
-      <Route path='/login' component={Login} />
-      <Route path='/' component={Nav}>
-        __ROOT_ROUTE__
-      </Route>
-    </Router>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path='/login' component={Login} />
+        <Route path='/' component={NavWrapper} />
+      </Switch>
+    </ConnectedRouter>
   );
 };
 

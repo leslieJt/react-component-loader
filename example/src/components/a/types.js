@@ -5,3 +5,5 @@
 export let A = ':global:aa';
 export let ASAS_CD, ASA_DS, F_SAS;
 export let CAC = 'DAD';
+
+export const ddd = 'SASAS';

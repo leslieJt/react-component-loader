@@ -19,6 +19,7 @@ module.exports = function (request) {
     var namespace = path.dirname(
       path.relative(path.join(query.root, componentDir), ctx.resourcePath)
     ).toUpperCase();
+    this.cacheable();
     return ['const ' + namespaceName + ' = "/' + namespace + '/";', request].join('\n');
   }
   if (query.bundle) {

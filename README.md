@@ -8,6 +8,7 @@
 - 支持页面组件、model的懒加载（默认）
 - 针对React Router v4
 - 对webpack热打包的完全支持
+- 可以自动给types加上namespace
 
 ## 约定
 
@@ -28,6 +29,13 @@
 }
 ````
 
+#### 自动给type加上namespace
+- 需要有单独的一个文件导出types
+- 需配置loader以及babel-plugin，方法详见[示例](example/webpack.config.js)中的 `types.js`部分
+- 如果不需要加名空间，type的值需是`:global:`开头
+- 可以只声明不定义(必须使用`let`或不推荐的`var`)，如此将会把标识符的名称作为字符串的值
+- 所加的namespace前缀可读性你会满意的
+
 #### 版本约束
 - React Router: 4
 - React Router Redux(如果需要): 5
@@ -44,6 +52,7 @@
 - [入口文件](example/src/entry.jsx)
 - [路由文件](example/src/components/root.jsx)
 - [model及异步整合](example/src/components/index.js)
+
 
 ####  简单运行这个项目
 -  git clone该项目

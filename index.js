@@ -8,12 +8,19 @@ var path = require('path');
 var loaderUtils = require('loader-utils');
 
 var UPDATE_SAGA = '@@INNER/UPDATE_SAGA';
+var namespaceName = require('./lib/babel-plugin-action-name-init').namespaceName;
 
 module.exports = function (request) {
   var query = loaderUtils.getOptions(this) || {};
   var reducerName = query.reducerName || 'reducer';
   var componentDir = query.componentDir || 'components';
   var ctx = this;
+  if (query.types) {
+    var namespace = path.dirname(
+      path.relative(path.join(query.root, componentDir), ctx.resourcePath)
+    ).toUpperCase();
+    return ['const ' + namespaceName + ' = "/' + namespace + '/";', request].join('\n');
+  }
   if (query.bundle) {
     var result = [];
     result.push('import v from "./view.jsx";');

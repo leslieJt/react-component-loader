@@ -24,5 +24,8 @@
   },
   "peerDependencies": {
     "react": "^15"
+  },
+  "devDependencies": {
+    "react": "^16.1.0"
   }
 }

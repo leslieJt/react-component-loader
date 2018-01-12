@@ -1,12 +1,10 @@
 /**
  * Created by fed on 2017/8/24.
  */
-import '../../../lib/fake-react';
 import React from 'react';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route, Switch } from 'react-router-dom';
-import reducerDecorator from '../../../lib/reducer-decorate';
-import injectStore from '../../../lib/inj-dispatch';
+import injectStore from 'rrc-loader-helper/lib/inj-dispatch';
 
 import Nav from './nav/view.jsx';
 import Login from './login/view.jsx';

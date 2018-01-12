@@ -5,7 +5,6 @@ import assign from 'object-assign';
 import { fork, call, take } from 'redux-saga/effects';
 import { routerReducer } from 'react-router-redux';
 
-import reducerDecorator from '../../../lib/reducer-decorate';
 const UPDATE_SAGA = '@@INNER/UPDATE_SAGA';
 
 

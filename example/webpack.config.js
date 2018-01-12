@@ -18,6 +18,11 @@ module.exports = {
   },
   watch: true,
   devtool: 'inline-sourcemap',
+  resolve: {
+    alias: {
+      react: path.join(__dirname, 'node_modules', 'react'),
+    }
+  },
   module: {
     rules: [
       {
@@ -27,7 +32,8 @@ module.exports = {
           options: {
             externals: ['nav', 'login'],
             lazy: true,
-            loading: 'Loading'
+            loading: 'Loading',
+            reducerDecorator: 'reducerDecorator',
           }
         }],
         exclude: /node_modules/,

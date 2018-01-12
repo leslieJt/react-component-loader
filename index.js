@@ -46,7 +46,8 @@ module.exports = function (request) {
     UPDATE_SAGA: UPDATE_SAGA,
     store: 'store',
     reducerInject: 'reducers',
-    reducerName: reducerName
+    reducerName: reducerName,
+    reducerDecorator: '',
   }, query);
   var items = ['reducers', 'saga', 'component'].filter(function (value) {
     return request.indexOf(config[value]) > -1;

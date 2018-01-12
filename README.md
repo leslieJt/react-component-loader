@@ -9,6 +9,7 @@
 - 针对React Router v4
 - 对webpack热打包的完全支持
 - 可以自动给types加上namespace
+- 简单的"数据绑定"
 
 ## 约定
 
@@ -52,6 +53,9 @@
 - [入口文件](example/src/entry.jsx)
 - [路由文件](example/src/components/root.jsx)
 - [model及异步整合](example/src/components/index.js)
+
+#### 简单的数据绑定
+- 在JSX的情况下，如果设定`data-bind`属性为x，那么将会把值x与model同名属性x绑定
 
 
 ####  简单运行这个项目

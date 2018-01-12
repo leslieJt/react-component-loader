@@ -7,6 +7,10 @@ import { connect } from 'react-redux';
 const mapStateToProps = state => state['b/list'];
 const comp = (props) => <div onClick={() => props.dispatch({
   type: 'aaa'
-})}>我是{props.name}啊!</div>;
+})}>我是{props.name}啊!
+  <div>
+    <input type="text" data-bind="name" />
+  </div>
+</div>;
 
 export default connect(mapStateToProps)(comp);

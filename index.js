@@ -56,6 +56,7 @@ module.exports = function (request) {
   if (items.length > 0) {
     cacheable = false;
     var components = componentList(config);
+    this.addContextDependency(config.dir);
     items.forEach(function (value) {
       var result = generators[value](components, config, ctx);
       request = result[1] + request;

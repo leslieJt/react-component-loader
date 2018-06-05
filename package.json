@@ -23,7 +23,7 @@
     "object-assign": "^4.1.0"
   },
   "peerDependencies": {
-    "react": "^15",
+    "react": ">=15",
     "rrc-loader-helper": "^1"
   },
   "devDependencies": {}

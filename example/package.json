@@ -5,12 +5,12 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "webpack": "^3.5.5"
+    "webpack": "^3.12.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -26,6 +26,7 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
-    "rrc-loader-helper": "^1.0.0"
+    "rrc-loader-helper": "git+https://github.com/renaesop/rrc-loader-helper.git",
+    "sheinq": "^1.1.19"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "route": "(/:id)",
+  "route": "/:id?",
   "description": "",
   "crumb": [],
   "sync": true

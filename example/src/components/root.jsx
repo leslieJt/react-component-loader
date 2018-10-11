@@ -13,8 +13,6 @@ import Login from './login/view.jsx';
 import Loading from './common/loading.jsx';
 import reducers from './index';
 
-let store;
-
 
 const NavWrapper = ({ match }) => {
   return (<Nav>
@@ -25,7 +23,6 @@ const NavWrapper = ({ match }) => {
 }
 
 const Routes = ({ history, store: innerStore }) => {
-  store = innerStore;
   injectStore(innerStore);
   return (
     <ConnectedRouter history={history}>

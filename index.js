@@ -17,9 +17,7 @@ module.exports = function rrcLoader(request) {
   const componentDir = query.componentDir || 'components';
   const ctx = this;
   if (query.types) {
-    const namespace = path.dirname(
-      path.relative(path.join(query.root, componentDir), ctx.resourcePath),
-    ).toUpperCase();
+    const namespace = path.dirname(path.relative(path.join(query.root, componentDir), ctx.resourcePath)).toUpperCase();
     this.cacheable();
     return [`const ${namespaceName} = "/${namespace}/";`, request].join('\n');
   }

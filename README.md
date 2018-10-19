@@ -26,7 +26,8 @@
   "description": "",
   "crumb": [],
   "route": "/:id?", // 页面的路由参数，具体规则见React-Router的文档
-  "sync": true  // 默认为false，如果设置为true，该页面将不会懒加载
+  "sync": true,  // 默认为false，如果设置为true，该页面将不会懒加载
+  "retain": true // 默认为false，若设为true，则页面对应的state会retain
 }
 ````
 

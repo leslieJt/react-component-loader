@@ -3,8 +3,26 @@
  */
 const defaultState = {
   name: 'bbc/list',
+  value: 'kkk',
+  loading: true,
 };
 
-export default function (state = defaultState) {
-  return state;
+function sleep(n) {
+  return new Promise(resolve => setTimeout(resolve, n));
 }
+
+export default {
+  defaultState,
+  hello: (state, action) => {
+    state.value = action.value;
+  },
+  * zz(action, ctx, put) {
+    yield put((state) => {
+      state.loading = true;
+    });
+    yield sleep(2 * 1000);
+    yield put((state) => {
+      state.loading = false;
+    });
+  },
+};

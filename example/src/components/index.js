@@ -23,7 +23,7 @@ function* waitingAwakeSaga(saga) {
       break;
     }
   }
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 100; i += 1) {
     try {
       yield call(saga);
     } catch (e) {
@@ -32,7 +32,7 @@ function* waitingAwakeSaga(saga) {
   }
 }
 
-export function *rootSaga() {
-  const sagas = __ROOT_SAGA__.map((saga) => fork(waitingAwakeSaga));
+export function* rootSaga() {
+  const sagas = __ROOT_SAGA__.map(saga => fork(waitingAwakeSaga, saga));
   yield sagas;
 }

@@ -4,12 +4,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Types from './reducer';
+
 const mapStateToProps = state => state['b/list'];
-const comp = (props) => <div onClick={() => props.dispatch({
-  type: 'aaa'
-})}>我是{props.name}啊!
+const comp = (props) => <div>我是{props.name}啊!
   <div>
     <input type="text" data-bind="name" />
+    <button onClick={() => props.dispatch({
+      type: Types.zz,
+    })}>
+      Hello, 你在做什么
+    </button>
+    {
+      props.loading ? '加载中' : '已完成'
+    }
   </div>
 </div>;
 

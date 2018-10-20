@@ -1,6 +1,6 @@
 {
   "name": "react-component-loader-exanple",
-  "version": "0.0.1",
+  "version": "2.0.0-alpha5",
   "scripts": {
     "build": "webpack"
   },
@@ -26,7 +26,7 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
-    "rrc-loader-helper": "git+https://github.com/renaesop/rrc-loader-helper.git",
+    "rrc-loader-helper": "^2.0.0",
     "sheinq": "^1.1.19"
   }
 }

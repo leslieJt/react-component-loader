@@ -9,6 +9,7 @@ const componentList = require('./lib/component-list');
 
 const UPDATE_SAGA = '@@INNER/UPDATE_SAGA';
 const { namespaceName } = require('./lib/babel-plugin-action-name-init');
+const { namespaceName: reducerEnhanceName, enhanceName } = require('./lib/babel-plugin-reducer-enhance');
 // @TODO how to improve the performance, may be by getter?
 module.exports = function rrcLoader(request) {
   let resultRequest = request;
@@ -16,20 +17,40 @@ module.exports = function rrcLoader(request) {
   const reducerName = query.reducerName || 'reducer';
   const componentDir = query.componentDir || 'components';
   const ctx = this;
+  const namespace = path.dirname(path.relative(path.join(process.cwd(), 'src', componentDir), ctx.resourcePath));
   if (query.types) {
-    const namespace = path.dirname(path.relative(path.join(query.root, componentDir), ctx.resourcePath)).toUpperCase();
-    this.cacheable();
     return [`const ${namespaceName} = "/${namespace}/";`, request].join('\n');
+  }
+  if (ctx.resourcePath.endsWith(`/${reducerName}.js`)) {
+    let json;
+    try {
+      json = require(path.join(path.dirname(ctx.resourcePath), 'me.json'));
+    } catch (e) {
+      json = {};
+    }
+    if (json.mobx) {
+      return [
+        `import ${enhanceName} from 'rrc-loader-helper/lib/mobx-adapter';`,
+        `const ${reducerEnhanceName} = "${namespace}";`,
+        request,
+      ].join('\n');
+    }
   }
   if (query.bundle) {
     const result = [];
     result.push('import v from "./view.jsx";');
-    result.push(`import r from "./${reducerName}";`);
-    result.push('import s from "./saga";');
     result.push('export const view = v;');
-    result.push('export const reducer = r;');
-    result.push('export const saga = s;');
-    this.cacheable();
+
+    const json = require(ctx.resourcePath);
+    if (!json.mobx) {
+      result.push('import s from "./saga";');
+      result.push('export const saga = s;');
+      result.push(`import r from "./${reducerName}";`);
+      result.push('export const reducer = r;');
+    } else {
+      result.push(`import r from "./${reducerName}";`);
+      result.push('export const reducer = r;');
+    }
     return result.join('\n');
   }
   const config = assign({
@@ -55,7 +76,6 @@ module.exports = function rrcLoader(request) {
       resultRequest = componentImportList + resultRequest;
       resultRequest = resultRequest.replace(config[value], componentVarList);
     });
-    console.log(resultRequest)
   }
   this.cacheable();
   return resultRequest;

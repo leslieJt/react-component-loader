@@ -37,21 +37,7 @@ module.exports = function rrcLoader(request) {
     }
   }
   if (query.bundle) {
-    const result = [];
-    result.push('import v from "./view.jsx";');
-    result.push('export const view = v;');
-
-    const json = require(ctx.resourcePath);
-    if (!json.mobx) {
-      result.push('import s from "./saga";');
-      result.push('export const saga = s;');
-      result.push(`import r from "./${reducerName}";`);
-      result.push('export const reducer = r;');
-    } else {
-      result.push(`import r from "./${reducerName}";`);
-      result.push('export const reducer = r;');
-    }
-    return result.join('\n');
+    return generators.bundle(reducerName, ctx);
   }
   const config = assign({
     externals: [],
